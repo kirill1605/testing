@@ -1,30 +1,27 @@
 import { Builder, Browser } from "selenium-webdriver";
 
 class BasePage {
-  constructor(driver) {
-    this.driver = driver;
+  async goToUrl(url) {
+    global.driver = new Builder().forBrowser(Browser.CHROME).build();
+    driver.manage().setTimeouts({ implicit: 5000 });
+    await driver.get(url);
   }
-  async open() {
-    await this.driver.get('https://mospolytech.ru/');
+
+  async enterText(locator, text) {
+    await driver.findElement(locator).sendKeys(text);
   }
-  async clickSchedule() {
-    await this.driver.findElement(By.xpath("//a[@href='/obuchauschimsya/raspisaniya/']")).click();
+
+  async getText(locator) {
+    return await driver.findElement(locator).getText();
   }
-  async clickSeeOnWebsite() {
-    await this.driver.findElement(By.xpath("//a[@href='https://rasp.dmami.ru/']")).click();
+
+  async click(locator) {
+    await driver.findElement(locator).click();
   }
-  async checkTabs() {
-    const initialWindowHandle = await this.driver.getWindowHandle();
-    const newWindowHandle = await this.driver.wait(async () => {
-      const handlesAfterAction = await this.driver.getAllWindowHandles();
-      return handlesAfterAction.find(handle => handle !== initialWindowHandle);
-    }, 3000);
-    if (newWindowHandle) {
-      await this.driver.switchTo().window(newWindowHandle);
-    }
-  }
-  async getTitle() {
-    return await this.driver.findElement(By.xpath('//h1')).getText();
+
+  async closeBrowser(delay = 0) {
+    if (delay) await driver.sleep(delay);
+    await driver.quit();
   }
 }
 

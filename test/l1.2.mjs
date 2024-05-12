@@ -1,19 +1,17 @@
 import TodoPage from "../pages/l1.2.mjs";
-import { expect } from 'chai';
-import { Builder, Browser, By } from 'selenium-webdriver';
-import { writeFile } from 'fs';
-import { promisify } from 'util';
-const writeFileAsync = promisify(writeFile);
+import { describe, it, before, after } from "mocha";
+import { assert } from "chai";
 
 describe('Todo App', () => {
   let driver;
-  let page;
+
   before(async () => {
-    driver = await new Builder().forBrowser(Browser.CHROME).build();
-    page = new TodoPage(driver);
+    driver = new TodoPage(5, 5);
+    await driver.open();
   });
+
   after(async () => {
-    await driver.quit();
+    await driver.closeBrowser();
   });
 
   afterEach(async function() {
@@ -26,26 +24,64 @@ describe('Todo App', () => {
     }
   });
 
-  it('Display elements', async () => {
-    await page.open();
-    const header = await page.getHeader();
-    expect(header).to.equal('LambdaTest Sample App');
+  it("Checking remaining text", async () => {
+    assert.isTrue(
+      await driver.checkElement(),
+      "Remaining text does not match expected"
+    );
   });
 
-  it('Update elements', async () => {
-    await page.open();
-    let remainingText = await page.getTodoRemainingText();
-    expect(remainingText).to.equal('5 of 5 remaining');
-    for (let i = 1; i <= 5; i++) {
-      await page.clickTodo(i);
-      remainingText = await page.getTodoRemainingText();
-      expect(remainingText).to.equal(`${5 - i} of 5 remaining`);
+  it("Checking first item", async () => {
+    const firstItem = await driver.getItem(1);
+    assert.isTrue(
+      await driver.isItemNotActive(firstItem),
+      "First item should not be active"
+    );
+    await driver.clickItem(1);
+    assert.isTrue(
+      await driver.isItemActive(firstItem),
+      "First item did not become active after click"
+    );
+    assert.isTrue(
+      await driver.checkElement(),
+      "Remaining text did not update correctly"
+    );
+  });
+
+  it("Checking other items", async () => {
+    for (let i = 2; i <= driver.total; i++) {
+      const item = await driver.getItem(i);
+      assert.isFalse(
+        await driver.isItemActive(item),
+        `Item ${i} should initially be inactive`
+      );
+      await driver.clickItem(i);
+      assert.isTrue(
+        await driver.isItemActive(item),
+        `Item ${i} did not become active after click`
+      );
+      assert.isTrue(
+        await driver.checkElement(),
+        "Remaining text did not update correctly"
+      );
     }
-    await page.addTodo('Sixth Item');
-    remainingText = await page.getTodoRemainingText();
-    expect(remainingText).to.equal('1 of 6 remaining');
-    await page.clickTodo(6);
-    remainingText = await page.getTodoRemainingText();
-    expect(remainingText).to.equal('0 of 6 remaining');
+  });
+
+  it("Adding new item", async () => {
+    await driver.addItem("Sixth item");
+    const newItem = await driver.getItem(driver.total);
+    assert.isFalse(
+      await driver.isItemActive(newItem),
+      "Newly added item should initially be inactive"
+    );
+    assert.isTrue(
+      await driver.checkElement(),
+      "Remaining text did not update correctly after adding an item"
+    );
+    await driver.clickItem(driver.total);
+    assert.isTrue(
+      await driver.checkElement(),
+      "Remaining text did not update correctly after clicking new item"
+    );
   });
 });
