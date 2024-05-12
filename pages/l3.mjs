@@ -54,23 +54,25 @@ class SortedMarketPage extends BasePage {
   }
 
   async listTenElements() {
-    let productNamesSorted = await driver.findElements(
-      By.xpath('//div[@data-auto-themename="listDetailed"]/child::div//div[@class="cia-cs"]//h3')
-    );
-    let productPricesSorted = await driver.findElements(
-      By.xpath('//div[@data-auto-themename="listDetailed"]/child::div//span[@class="_1ArMm"]')
-    );
+    let productNamesSorted = await driver.findElements(By.xpath('//div[@data-auto-themename="listDetailed"]/child::div//div[@class="cia-cs"]//h3'));
+    let productPricesSorted = await driver.findElements(By.xpath('//div[@data-auto-themename="listDetailed"]/child::div//span[@class="_1ArMm"]'));
+
+    if (productNamesSorted.length < 10 || productPricesSorted.length < 10) {
+        console.error('Not enough products found on the page.');
+        return;
+    }
 
     this.secondProductName = productNamesSorted[1];
     this.secondProductPrice = productPricesSorted[1];
+
     for (let i = 0; i < 10; i++) {
-      console.log(
-        `Product: ${await productNamesSorted[
-          i
-        ].getText()}, price: ${await productPricesSorted[i].getText()} руб.`
-      );
+        if (productNamesSorted[i] && productPricesSorted[i]) {
+            console.log(`Product: ${await productNamesSorted[i].getText()}, price: ${await productPricesSorted[i].getText()} руб.`);
+        } else {
+            console.error(`Missing product or price information for index ${i}`);
+        }
     }
-  }
+}
 }
 
 export default SortedMarketPage;

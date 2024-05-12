@@ -1,18 +1,16 @@
-import BasePage from "../pages/basepage.mjs";
 import SchedulePage from "../pages/l2.mjs";
 import { expect } from 'chai';
 import { Builder, Browser, By } from 'selenium-webdriver';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
+import assert from 'assert';
 const writeFileAsync = promisify(writeFile);
 
 describe('Schedule Page Test', () => {
     let driver;
-    let basePage;
     let schedulePage;
     before(async () => {
         driver = await new Builder().forBrowser(Browser.CHROME).build();
-        basePage = new BasePage(driver);
         schedulePage = new SchedulePage(driver);
     });
 
@@ -30,12 +28,12 @@ describe('Schedule Page Test', () => {
         }
     });
     it('Search for a group schedule', async () => {
-        await basePage.open();
-        await basePage.clickSchedule();
-        const header = await basePage.getTitle();
+        await schedulePage.open();
+        await schedulePage.clickSchedule();
+        const header = await schedulePage.getTitle();
         expect(header).to.equal('Расписания');
-        await basePage.clickSeeOnWebsite();
-        await basePage.checkTabs();
+        await schedulePage.clickSeeOnWebsite();
+        await schedulePage.checkTabs();
         await schedulePage.checkGroups();
         await schedulePage.clickGroup();
         const weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
