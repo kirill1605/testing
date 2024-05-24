@@ -8,7 +8,7 @@
     "selenium-webdriver": "^4.21.0"
   },
   "scripts": {
-    "test": "mocha --reporter mocha-allure-reporter"
+    "test": "mocha --recursive --timeout 60000"
   },
   "devDependencies": {
     "chai": "^5.1.0",
@@ -19,6 +19,13 @@
   "main": "l1_1.js",
   "directories": {
     "test": "tests"
+  },
+  "mocha": {
+    "parallel": false,
+    "reporter": "allure-mocha",
+    "reporterOptions": {
+      "resultsDir": "allure-results"
+    }
   },
   "keywords": [],
   "author": "",

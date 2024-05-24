@@ -1,0 +1,3 @@
+Displayed the title
+Displayed the article name
+Text entered

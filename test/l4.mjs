@@ -50,46 +50,105 @@ describe("Article test", function () {
     }
   });
 
-  // it('Featured article', async function () {
-  //   await allure.step("Step 1. Displayed the title", async () => {
-  //     try {
-  //       await driver.featuredTitle();
-  //       logStep("Displayed the title");
-  //       allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
-  //     } catch (error) {
-  //       logStep(`Error: ${error}`);
-  //       await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
-  //       throw error;
-  //     }
-  //   });
+  it('Featured article', async function () {
+    await allure.step("Step 1. Displayed the title", async () => {
+      try {
+        await driver.featuredTitle();
+        logStep("Displayed the title");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
 
-  //   await allure.step("Step 2. Displayed the article name", async () => {
-  //     try {
-  //       await driver.featuredArticleName();
-  //       logStep("Displayed the article name");
-  //       allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
-  //     } catch (error) {
-  //       logStep(`Error: ${error}`);
-  //       await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
-  //       throw error;
-  //     }
-  //   });
-  // });
-
-  it("Featured article", async () => {
-    await driver.featuredTitle();
-    await driver.featuredArticleName();
+    await allure.step("Step 2. Displayed the article name", async () => {
+      try {
+        await driver.featuredArticleName();
+        logStep("Displayed the article name");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
   });
 
-  it("Search", async function () {
-    await driver.searchEnterText("Вторая Мировая Война");
-    await driver.searchClick();
+  it('Featured article', async function () {
+    await allure.step("Step 1. Enter text", async () => {
+      try {
+        await driver.searchEnterText("Вторая Мировая Война");
+        logStep("Text entered");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
+
+    await allure.step("Step 2. Click for search", async () => {
+      try {
+        await driver.searchClick();
+        logStep("Search founded and clicked");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
   });
 
-  it("Found article", async function () {
-    await driver.articleScroll();
-    await driver.articleTitle();
-    await driver.articleContent();
-    await driver.articleLink();
+  it('Featured article', async function () {
+    await allure.step("Step 1. Check article title", async () => {
+      try {
+        await driver.articleTitle();
+        logStep("Title correct");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
+
+    await allure.step("Step 2. Scroll to the content", async () => {
+      try {
+        await driver.articleScroll();
+        logStep("Page scrolled");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
+
+    await allure.step("Step 3. Go to the item", async () => {
+      try {
+        await driver.articleContent();
+        logStep("The item was opened");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
+
+    await allure.step("Step 4. Open new page", async () => {
+      try {
+        await driver.articleLink();
+        logStep("New page opened successfully");
+        allure.attachment("Log", Buffer.from(logs.join("\n")), "text/plain");
+      } catch (error) {
+        logStep(`Error: ${error}`);
+        await takeScreenshot(this.test.title.replace(/\s+/g, '_'));
+        throw error;
+      }
+    });
   });
 });

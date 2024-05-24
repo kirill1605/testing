@@ -1,0 +1,8 @@
+Displayed the title
+Displayed the article name
+Text entered
+Search founded and clicked
+Title correct
+Page scrolled
+The item was opened
+New page opened successfully
