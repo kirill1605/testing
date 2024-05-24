@@ -1,8 +1,7 @@
 import BasePage from "./basepage.mjs";
 import { By } from "selenium-webdriver";
-import { allure } from 'allure-mocha/runtime';
 
-class SortedMarketPage extends BasePage {
+class ArticleTest extends BasePage {
   constructor() {
     super();
   }
@@ -73,4 +72,4 @@ class SortedMarketPage extends BasePage {
   }
 }
 
-export default SortedMarketPage;
+export default ArticleTest;

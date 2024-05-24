@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1716565277015' stop='1716565279643'>
+    <name>Sorting test</name>
+    <title>Sorting test</title>
+    <test-cases>
+        <test-case start='1716565279436' status='broken' stop='1716565279437'>
+            <name>"before all" hook for "Open category"</name>
+            <title>"before all" hook for "Open category"</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>no such window: target window already closed
+                from unknown error: web view not found
+                  (Session info: chrome=125.0.6422.78)</message>
+                <stack-trace>NoSuchWindowError: no such window: target window already closed
+                from unknown error: web view not found
+                  (Session info: chrome=125.0.6422.78)
+                    at Object.throwDecodedError (node_modules\selenium-webdriver\lib\error.js:521:15)
+                    at parseHttpResponse (node_modules\selenium-webdriver\lib\http.js:514:13)
+                    at Executor.execute (node_modules\selenium-webdriver\lib\http.js:446:28)
+                    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+                    at async thenableWebDriverProxy.execute (node_modules\selenium-webdriver\lib\webdriver.js:740:17)
+                    at async SortedMarketPage.open (file:///E:/Desktop/workspace/autotesting/pages/l3.mjs:11:5)
+                    at async Context.&lt;anonymous> (file:///E:/Desktop/workspace/autotesting/test/l3.mjs:9:5)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

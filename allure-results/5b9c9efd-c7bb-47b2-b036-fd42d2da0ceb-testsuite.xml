@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1716565271084' stop='1716565277012'>
+    <name>Schedule Page Test</name>
+    <title>Schedule Page Test</title>
+    <test-cases>
+        <test-case start='1716565272226' status='broken' stop='1716565276253'>
+            <name>Search for a group schedule</name>
+            <title>Search for a group schedule</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (E:\Desktop\workspace\autotesting\test\l2.mjs)</message>
+                <stack-trace>Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (E:\Desktop\workspace\autotesting\test\l2.mjs)
+                    at listOnTimeout (node:internal/timers:573:17)
+                    at process.processTimers (node:internal/timers:514:7)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

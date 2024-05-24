@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1716565358627' stop='1716565361143'>
+    <name>Todo App</name>
+    <title>Todo App</title>
+    <test-cases>
+        <test-case start='1716565360353' status='passed' stop='1716565360379'>
+            <name>Checking remaining text</name>
+            <title>Checking remaining text</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1716565360379' status='passed' stop='1716565360463'>
+            <name>Checking first item</name>
+            <title>Checking first item</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1716565360463' status='passed' stop='1716565360780'>
+            <name>Checking other items</name>
+            <title>Checking other items</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1716565360780' status='passed' stop='1716565360956'>
+            <name>Adding new item</name>
+            <title>Adding new item</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

@@ -1,13 +1,14 @@
 {
   "dependencies": {
     "allure-commandline": "^2.29.0",
+    "allure-mocha": "^2.15.1",
     "assert": "^2.1.0",
     "axios": "^1.7.2",
     "fs": "^0.0.1-security",
     "selenium-webdriver": "^4.21.0"
   },
   "scripts": {
-    "test": "mocha --recursive --timeout 60000"
+    "test": "mocha --reporter mocha-allure-reporter"
   },
   "devDependencies": {
     "chai": "^5.1.0",
